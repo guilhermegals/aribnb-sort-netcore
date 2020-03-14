@@ -126,69 +126,44 @@
 
         #region [ Merge Sort ]
 
-        public static void MergeSort(Airbnb[] airbnbs, int left, int right)
-    {
-      if (left < right)
-      {
-        int middle = (left + right) / 2;
+        public static void MergeSort(Airbnb[] airbnbs, int low, int high) {
+            
+        if (low < high) {            
+        int middle = low + (high - low) / 2;
 
-        MergeSort(airbnbs, left, middle);
-        MergeSort(airbnbs, middle + 1, right);
+        MergeSort(airbnbs, low, middle);
+        MergeSort(airbnbs, middle + 1, high);
 
-        MergeSplit(airbnbs, left, middle, right);
+        MergeSplit(airbnbs, low, middle, high);
       }
     }
 
-    public static void MergeSplit(Airbnb[] airbnbs, int left, int middle, int right)
-    {
-      int n1 = middle - left + 1;
-      int n2 = right - middle;
-
-      Airbnb[] vetLeft = new Airbnb[n1];
-      Airbnb[] vetRight = new Airbnb[n2];
-
-      for (int x = 0; x < n1; x++)
-      {
-        vetLeft[x] = airbnbs[x + left];
+    public static void MergeSplit(Airbnb[] airbnbs, int low, int middle, int high) {
+        
+      Airbnb[] aux = new Airbnb[airbnbs.Length];
+      for (int y = low; y <= high; y++) {
+          aux[y] = airbnbs[y];
       }
 
-      for (int z = 0; z < n2; z++)
-      {
-        vetRight[z] = airbnbs[middle + 1 + z];
-      }
-      int i = 1, j = 0;
-      int k = left;
-
-      while (i < n1 && j < n2)
-      {
-        if (vetLeft[i].RoomId <= vetRight[j].RoomId)
-        {
-          airbnbs[k] = vetLeft[i];
+      int i = low;
+      int j = middle + 1;
+      int k = low;
+      while (i <= middle && j <= high) {          
+        if (aux[i].RoomId <= aux[j].RoomId) {
+          airbnbs[k] = aux[i];
           i++;
         }
-        else
-        {
-          airbnbs[k] = vetRight[j];
+        else {
+          airbnbs[k] = aux[j];
           j++;
         }
         k++;
       }
-
-      while (i < n1)
-      {
-        airbnbs[k] = vetLeft[i];
+      while (i <= middle) {
+        airbnbs[k] = aux[i];
+        k++;
         i++;
-        k++;
       }
-
-      while (j < n2)
-      {
-        airbnbs[k] = vetRight[j];
-        j++;
-        k++;
-      }
-
-
     }
 
         #endregion
