@@ -177,13 +177,12 @@ namespace GA.AED.Sort {
             Console.WriteLine(consoleLog);
         }
 
-        private static void Merge(Airbnb[] airbnbs, string type, int quantity)
-    {
+        private static void Merge(Airbnb[] airbnbs, string type, int quantity) {
+            
       DateTime mergeSortStart = DateTime.Now;
-
       double[] mergeSortTimes = new double[REPETITIONS_TIME];
-      for (int repetition = 0; repetition < REPETITIONS_TIME; repetition++)
-      {
+            
+      for (int repetition = 0; repetition < REPETITIONS_TIME; repetition++) {
         Airbnb[] airbnbsMergeSort = Airbnb.GetCopy(airbnbs, quantity);
 
         Stopwatch watch = Stopwatch.StartNew();
