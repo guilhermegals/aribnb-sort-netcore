@@ -18,6 +18,7 @@ namespace GA.AED.Sort {
         private const string INSERT_SORT = "InsertSort";
         private const string MERGE_SORT = "MergeSort";
         private const string QUICK_SORT = "QuickSort";
+        private const string CREATE_SORT = "CreateSort";
 
         private const string RANDOM = "Aleatorio";
         private const string DESC = "Decrescente";
@@ -141,7 +142,7 @@ namespace GA.AED.Sort {
 
             double insertAverageTime = AverageTime(insertSortTimes);
             DateTime insertSortEnd = DateTime.Now;
-            string consoleLog = $"{quantity,-10} {type,-15} {BUBBLE_SORT,-15} ({insertSortStart} - {insertSortEnd})";
+            string consoleLog = $"{quantity,-10} {type,-15} {INSERT_SORT,-15} ({insertSortStart} - {insertSortEnd})";
 
             Log(INSERT_SORT,
                 type,
@@ -186,7 +187,31 @@ namespace GA.AED.Sort {
         }
 
         private static void Create(Airbnb[] airbnbs, string type, int quantity) {
+            DateTime createSortStart = DateTime.Now;
 
+            double[] createSortTimes = new double[REPETITIONS_TIME];
+            for (int repetition = 0; repetition < REPETITIONS_TIME; repetition++) {
+                Airbnb[] airbnbsCreateSort = Airbnb.GetCopy(airbnbs, quantity);
+
+                Stopwatch watch = Stopwatch.StartNew();
+                Airbnb.CreateSort(airbnbsCreateSort);
+                watch.Stop();
+
+                createSortTimes[repetition] = watch.ElapsedMilliseconds / 1000.0;
+            }
+
+            double createAverageTime = AverageTime(createSortTimes);
+            DateTime createSortEnd = DateTime.Now;
+            string consoleLog = $"{quantity,-10} {type,-15} {CREATE_SORT,-15} ({createSortStart} - {createSortEnd})";
+
+            Log(CREATE_SORT,
+                type,
+                quantity,
+                createAverageTime,
+                Process.GetCurrentProcess().PeakWorkingSet64 / (1024 * 1024));
+
+            ConsoleLog(consoleLog);
+            Console.WriteLine(consoleLog);
         }
 
         #endregion
