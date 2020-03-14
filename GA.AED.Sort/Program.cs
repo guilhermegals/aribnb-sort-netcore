@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 namespace GA.AED.Sort {
     public class Program {
@@ -139,7 +140,7 @@ namespace GA.AED.Sort {
                 Airbnb[] airbnbsQuickSort = Airbnb.GetCopy(airbnbs, quantity);
 
                 Stopwatch watch = Stopwatch.StartNew();
-                Airbnb.QuickSort(airbnbsQuickSort);
+                Airbnb.QuickSort(airbnbsQuickSort, 0, airbnbsQuickSort.Length - 1);
                 watch.Stop();
 
                 quickSortTimes[repetition] = watch.ElapsedMilliseconds / 1000.0;
