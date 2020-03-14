@@ -66,6 +66,7 @@
       return airbnbCopy;
     }
 
+<<<<<<< HEAD
     #endregion
 
     #region [ Sort ]
@@ -83,10 +84,30 @@
             airbnbs[j] = airbnbs[j + 1];
             airbnbs[j + 1] = aux;
           }
+=======
+        #endregion
+
+        #region [ Sort ]
+
+        #region [ Bubble Sort ]
+
+        public static void BubbleSort(Airbnb[] airbnbs) {
+            int length = airbnbs.Length;
+            for (int i = 0; i <= length - 1; i++) {
+                for (int j = 0; j < length - 1; j++) {
+                    if (airbnbs[j + 1].RoomId < airbnbs[j].RoomId) {
+                        Airbnb aux = airbnbs[j];
+                        airbnbs[j] = airbnbs[j + 1];
+                        airbnbs[j + 1] = aux;
+                    }
+                }
+            }
+>>>>>>> 9266609f7c5a6e26aeeb31f735d4d657befdf5a0
         }
       }
     }
 
+<<<<<<< HEAD
     public static void SelectSort(Airbnb[] airbnbs)
     {
       //TODO: Implementar o SelectSort
@@ -131,6 +152,89 @@
     public static void CreateSort(Airbnb[] airbnbs)
     {
       //TODO: Implementar o CreateSort
+=======
+        #endregion
+
+        #region [ Select Sort ]
+
+        public static void SelectSort(Airbnb[] airbnbs) {
+            //TODO: Implementar o SelectSort
+        }
+
+        #endregion
+
+        #region [ Insert Sort ]
+
+        public static void InsertSort(Airbnb[] airbnbs) {
+            int n = airbnbs.Length;
+
+            for (int i = 1; i < n; ++i) {
+
+                Airbnb key = airbnbs[i];
+                int j = i - 1;
+
+                while (j >= 0 && airbnbs[j].RoomId > key.RoomId) {
+                    airbnbs[j + 1] = airbnbs[j];
+                    j = j - 1;
+                }
+
+                airbnbs[j + 1] = key;
+            }
+        }
+
+        #endregion
+
+        #region [ Merge Sort ]
+
+        public static void MergeSort(Airbnb[] airbnbs) {
+            //TODO: Implementar o MergeSort
+        }
+
+        #endregion
+
+        #region [ Quick Sort ]
+
+        public static void QuickSort(Airbnb[] airbnbs, int start, int end) {
+
+            if (start < end) {
+                int pivot = QuickSortPartition(airbnbs, start, end);
+
+                QuickSort(airbnbs, start, pivot - 1);
+                QuickSort(airbnbs, pivot + 1, end);
+            }
+        }
+
+        private static int QuickSortPartition(Airbnb[] airbnbs, int start, int end) {
+            Airbnb airbnbEnd = airbnbs[end], temp;
+            int pivot = start - 1;
+
+            for (int i = start; i <= end - 1; i++) {
+                if (airbnbs[i].RoomId <= airbnbEnd.RoomId) {
+                    pivot++;
+                    temp = airbnbs[pivot];
+                    airbnbs[pivot] = airbnbs[i];
+                    airbnbs[i] = temp;
+                }
+            }
+
+            temp = airbnbs[pivot + 1];
+            airbnbs[pivot + 1] = airbnbs[end];
+            airbnbs[end] = temp;
+            return pivot + 1;
+        }
+
+        #endregion
+
+        #region [ Create Sort ]
+
+        public static void CreateSort(Airbnb[] airbnbs) {
+            //TODO: Implementar o CreateSort
+        }
+
+        #endregion
+
+        #endregion
+>>>>>>> 9266609f7c5a6e26aeeb31f735d4d657befdf5a0
     }
 
     #endregion

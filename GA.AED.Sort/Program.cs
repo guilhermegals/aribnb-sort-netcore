@@ -15,11 +15,20 @@ namespace GA.AED.Sort
     private const string FILE_LOG_WRITE_PATH = @"Files/Logs/Log {0}.csv";
     private const string FILE_CONSOLE_LOG_WRITE_PATH = @"Files/Logs/ConsoleLog {0}.txt";
 
+<<<<<<< HEAD
     private const string BUBBLE_SORT = "BubbleSort";
     private const string SELECT_SORT = "SelectSort";
     private const string INSERT_SORT = "InsertSort";
     private const string MERGE_SORT = "MergeSort";
     private const string QUICK_SORT = "QuickSort";
+=======
+        private const string BUBBLE_SORT = "BubbleSort";
+        private const string SELECT_SORT = "SelectSort";
+        private const string INSERT_SORT = "InsertSort";
+        private const string MERGE_SORT = "MergeSort";
+        private const string QUICK_SORT = "QuickSort";
+        private const string CREATE_SORT = "CreateSort";
+>>>>>>> 9266609f7c5a6e26aeeb31f735d4d657befdf5a0
 
     private const string RANDOM = "Aleatorio";
     private const string DESC = "Decrescente";
@@ -108,8 +117,14 @@ namespace GA.AED.Sort
         Airbnb.BubbleSort(airbnbsBoubbleSort);
         watch.Stop();
 
+<<<<<<< HEAD
         bubbleSortTimes[repetition] = watch.ElapsedMilliseconds / 1000.0;
       }
+=======
+            Console.Beep();
+            Console.ReadKey();
+        }
+>>>>>>> 9266609f7c5a6e26aeeb31f735d4d657befdf5a0
 
       double bubbleAverageTime = AverageTime(bubbleSortTimes);
       DateTime bubbleSortEnd = DateTime.Now;
@@ -152,10 +167,40 @@ namespace GA.AED.Sort
           selectionAverageTime,
           Process.GetCurrentProcess().PeakWorkingSet64 / (1024 * 1024));
 
+<<<<<<< HEAD
       ConsoleLog(consoleLog);
       Console.WriteLine(consoleLog);
 
     }
+=======
+        private static void Insert(Airbnb[] airbnbs, string type, int quantity) {
+            DateTime insertSortStart = DateTime.Now;
+
+            double[] insertSortTimes = new double[REPETITIONS_TIME];
+            for (int repetition = 0; repetition < REPETITIONS_TIME; repetition++) {
+                Airbnb[] airbnbsinsertSort = Airbnb.GetCopy(airbnbs, quantity);
+
+                Stopwatch watch = Stopwatch.StartNew();
+                Airbnb.InsertSort(airbnbsinsertSort);
+                watch.Stop();
+
+                insertSortTimes[repetition] = watch.ElapsedMilliseconds / 1000.0;
+            }
+
+            double insertAverageTime = AverageTime(insertSortTimes);
+            DateTime insertSortEnd = DateTime.Now;
+            string consoleLog = $"{quantity,-10} {type,-15} {INSERT_SORT,-15} ({insertSortStart} - {insertSortEnd})";
+
+            Log(INSERT_SORT,
+                type,
+                quantity,
+                insertAverageTime,
+                Process.GetCurrentProcess().PeakWorkingSet64 / (1024 * 1024));
+
+            ConsoleLog(consoleLog);
+            Console.WriteLine(consoleLog);
+        }
+>>>>>>> 9266609f7c5a6e26aeeb31f735d4d657befdf5a0
 
     private static void Insert(Airbnb[] airbnbs, string type, int quantity)
     {
@@ -167,9 +212,15 @@ namespace GA.AED.Sort
 
     }
 
+<<<<<<< HEAD
     private static void Quick(Airbnb[] airbnbs, string type, int quantity)
     {
       DateTime quickSortStart = DateTime.Now;
+=======
+                Stopwatch watch = Stopwatch.StartNew();
+                Airbnb.QuickSort(airbnbsQuickSort, 0, airbnbsQuickSort.Length - 1);
+                watch.Stop();
+>>>>>>> 9266609f7c5a6e26aeeb31f735d4d657befdf5a0
 
       double[] quickSortTimes = new double[REPETITIONS_TIME];
       for (int repetition = 0; repetition < REPETITIONS_TIME; repetition++)
@@ -187,6 +238,7 @@ namespace GA.AED.Sort
       DateTime quickSortEnd = DateTime.Now;
       string consoleLog = $"{quantity,-10} {type,-15} {QUICK_SORT,-15} ({quickSortStart} - {quickSortEnd})";
 
+<<<<<<< HEAD
       Log(QUICK_SORT,
           type,
           quantity,
@@ -196,6 +248,35 @@ namespace GA.AED.Sort
       ConsoleLog(consoleLog);
       Console.WriteLine(consoleLog);
     }
+=======
+        private static void Create(Airbnb[] airbnbs, string type, int quantity) {
+            DateTime createSortStart = DateTime.Now;
+
+            double[] createSortTimes = new double[REPETITIONS_TIME];
+            for (int repetition = 0; repetition < REPETITIONS_TIME; repetition++) {
+                Airbnb[] airbnbsCreateSort = Airbnb.GetCopy(airbnbs, quantity);
+
+                Stopwatch watch = Stopwatch.StartNew();
+                Airbnb.CreateSort(airbnbsCreateSort);
+                watch.Stop();
+
+                createSortTimes[repetition] = watch.ElapsedMilliseconds / 1000.0;
+            }
+
+            double createAverageTime = AverageTime(createSortTimes);
+            DateTime createSortEnd = DateTime.Now;
+            string consoleLog = $"{quantity,-10} {type,-15} {CREATE_SORT,-15} ({createSortStart} - {createSortEnd})";
+
+            Log(CREATE_SORT,
+                type,
+                quantity,
+                createAverageTime,
+                Process.GetCurrentProcess().PeakWorkingSet64 / (1024 * 1024));
+
+            ConsoleLog(consoleLog);
+            Console.WriteLine(consoleLog);
+        }
+>>>>>>> 9266609f7c5a6e26aeeb31f735d4d657befdf5a0
 
     private static void Create(Airbnb[] airbnbs, string type, int quantity)
     {
