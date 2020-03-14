@@ -10,14 +10,15 @@ namespace GA.AED.Sort {
         private const string FILE_READ_PATH_RANDOM = @"Files\dados_airbnb_random.csv";
         private const string FILE_READ_PATH_DESC = @"Files\dados_airbnb_desc.csv";
         private const string FILE_READ_PATH_ASC = @"Files\dados_airbnb_asc.csv";
-        private const string FILE_WRITE_PATH = @"Files\Log.csv";
+        private const string FILE_LOG_WRITE_PATH = @"Files\Logs\Log {0}.csv";
+        private const string FILE_CONSOLE_LOG_WRITE_PATH = @"Files\Logs\ConsoleLog {0}.txt";
 
         private const string BUBBLE_SORT = "BubbleSort";
         private const string SELECT_SORT = "SelectSort";
         private const string INSERT_SORT = "InsertSort";
         private const string MERGE_SORT = "MergeSort";
         private const string QUICK_SORT = "QuickSort";
-        
+
         private const string RANDOM = "Aleatorio";
         private const string DESC = "Decrescente";
         private const string ASC = "Crescente";
@@ -25,11 +26,11 @@ namespace GA.AED.Sort {
         private const int REPETITIONS_TIME = 5;
         private const int THOUSAND = 1000;
 
+        private static DateTime StartDate = DateTime.Now;
+
         #endregion
 
         public static void Main(string[] args) {
-            File.Delete(FILE_WRITE_PATH);
-
             Airbnb[] airbnbsRandom = ReadAirbnbFile(FILE_READ_PATH_RANDOM);
             Airbnb[] airbnbsDesc = ReadAirbnbFile(FILE_READ_PATH_DESC);
             Airbnb[] airbnbsAsc = ReadAirbnbFile(FILE_READ_PATH_ASC);
@@ -106,6 +107,7 @@ namespace GA.AED.Sort {
 
             double bubbleAverageTime = AverageTime(bubbleSortTimes);
             DateTime bubbleSortEnd = DateTime.Now;
+            string consoleLog = $"{quantity,-10} {type,-15} {BUBBLE_SORT,-15} ({bubbleSortStart} - {bubbleSortEnd})";
 
             Log(BUBBLE_SORT,
                 type,
@@ -113,7 +115,8 @@ namespace GA.AED.Sort {
                 bubbleAverageTime,
                 Process.GetCurrentProcess().PeakWorkingSet64 / (1024 * 1024));
 
-            Console.WriteLine($"{quantity,-10} {type, -15} {BUBBLE_SORT,-15} ({bubbleSortStart} - {bubbleSortEnd})");
+            ConsoleLog(consoleLog);
+            Console.WriteLine(consoleLog);
         }
 
         private static void Select(Airbnb[] airbnbs, string type, int quantity) {
@@ -129,7 +132,31 @@ namespace GA.AED.Sort {
         }
 
         private static void Quick(Airbnb[] airbnbs, string type, int quantity) {
+            DateTime quickSortStart = DateTime.Now;
 
+            double[] quickSortTimes = new double[REPETITIONS_TIME];
+            for (int repetition = 0; repetition < REPETITIONS_TIME; repetition++) {
+                Airbnb[] airbnbsQuickSort = Airbnb.GetCopy(airbnbs, quantity);
+
+                Stopwatch watch = Stopwatch.StartNew();
+                Airbnb.QuickSort(airbnbsQuickSort);
+                watch.Stop();
+
+                quickSortTimes[repetition] = watch.ElapsedMilliseconds / 1000.0;
+            }
+
+            double quickAverageTime = AverageTime(quickSortTimes);
+            DateTime quickSortEnd = DateTime.Now;
+            string consoleLog = $"{quantity,-10} {type,-15} {QUICK_SORT,-15} ({quickSortStart} - {quickSortEnd})";
+
+            Log(QUICK_SORT,
+                type,
+                quantity,
+                quickAverageTime,
+                Process.GetCurrentProcess().PeakWorkingSet64 / (1024 * 1024));
+
+            ConsoleLog(consoleLog);
+            Console.WriteLine(consoleLog);
         }
 
         private static void Create(Airbnb[] airbnbs, string type, int quantity) {
@@ -161,15 +188,25 @@ namespace GA.AED.Sort {
                                 double time,
                                 long memory) {
 
+            string path = string.Format(FILE_LOG_WRITE_PATH, StartDate.ToString("dd-MM-yyyy HH-MM"));
             string linha = string.Empty;
 
-            if (!File.Exists(FILE_WRITE_PATH)) {
-                File.Create(FILE_WRITE_PATH).Close();
+            if (!File.Exists(path)) {
+                File.Create(path).Close();
                 linha += "Algoritmo; Tipo; Quantidade; Tempo; Memoria\n";
             }
 
             linha += $"{description}; {tipo}; {quantity}; {time}; {memory}\n";
-            File.AppendAllText(FILE_WRITE_PATH, linha);
+            File.AppendAllText(path, linha);
+        }
+
+        private static void ConsoleLog(string consoleLog) {
+            string path = string.Format(FILE_CONSOLE_LOG_WRITE_PATH, StartDate.ToString("dd-MM-yyyy HH-MM"));
+            if (!File.Exists(path)) {
+                File.Create(path).Close();
+            }
+
+            File.AppendAllText(path, consoleLog + "\n");
         }
 
         #endregion
