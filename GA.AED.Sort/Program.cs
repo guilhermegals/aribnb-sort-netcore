@@ -88,6 +88,8 @@ namespace GA.AED.Sort {
                 #endregion
             }
 
+            Console.Beep();
+            Console.ReadKey();
         }
 
         #region [ Sorts ]
