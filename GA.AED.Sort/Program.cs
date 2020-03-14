@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 
 namespace GA.AED.Sort {
     public class Program {
@@ -127,7 +126,31 @@ namespace GA.AED.Sort {
         }
 
         private static void Insert(Airbnb[] airbnbs, string type, int quantity) {
+            DateTime insertSortStart = DateTime.Now;
 
+            double[] insertSortTimes = new double[REPETITIONS_TIME];
+            for (int repetition = 0; repetition < REPETITIONS_TIME; repetition++) {
+                Airbnb[] airbnbsinsertSort = Airbnb.GetCopy(airbnbs, quantity);
+
+                Stopwatch watch = Stopwatch.StartNew();
+                Airbnb.InsertSort(airbnbsinsertSort);
+                watch.Stop();
+
+                insertSortTimes[repetition] = watch.ElapsedMilliseconds / 1000.0;
+            }
+
+            double insertAverageTime = AverageTime(insertSortTimes);
+            DateTime insertSortEnd = DateTime.Now;
+            string consoleLog = $"{quantity,-10} {type,-15} {BUBBLE_SORT,-15} ({insertSortStart} - {insertSortEnd})";
+
+            Log(INSERT_SORT,
+                type,
+                quantity,
+                insertAverageTime,
+                Process.GetCurrentProcess().PeakWorkingSet64 / (1024 * 1024));
+
+            ConsoleLog(consoleLog);
+            Console.WriteLine(consoleLog);
         }
 
         private static void Merge(Airbnb[] airbnbs, string type, int quantity) {

@@ -93,7 +93,20 @@
         #region [ Insert Sort ]
 
         public static void InsertSort(Airbnb[] airbnbs) {
-            //TODO: Implementar o InsertSort
+            int n = airbnbs.Length;
+
+            for (int i = 1; i < n; ++i) {
+
+                Airbnb key = airbnbs[i];
+                int j = i - 1;
+
+                while (j >= 0 && airbnbs[j].RoomId > key.RoomId) {
+                    airbnbs[j + 1] = airbnbs[j];
+                    j = j - 1;
+                }
+
+                airbnbs[j + 1] = key;
+            }
         }
 
         #endregion
