@@ -80,13 +80,13 @@ namespace GA.AED.Sort {
 
                 #endregion
 
-                #region [ CreateSort ]
+                //#region [ CreateSort ]
 
-                Create(airbnbsRandom, RANDOM, quantity);
-                Create(airbnbsDesc, DESC, quantity);
-                Create(airbnbsAsc, ASC, quantity);
+                //Create(airbnbsRandom, RANDOM, quantity);
+                //Create(airbnbsDesc, DESC, quantity);
+                //Create(airbnbsAsc, ASC, quantity);
 
-                #endregion
+                //#endregion
             }
 
             Console.Beep();

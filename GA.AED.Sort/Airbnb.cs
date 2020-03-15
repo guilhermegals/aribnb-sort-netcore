@@ -70,7 +70,7 @@
         public static void BubbleSort(Airbnb[] airbnbs) {
             int length = airbnbs.Length;
             for (int i = 0; i <= length - 1; i++) {
-                for (int j = 0; j < length - 1; j++) {
+                for (int j = 0; j < length - i - 1; j++) {
                     if (airbnbs[j + 1].RoomId < airbnbs[j].RoomId) {
                         Airbnb aux = airbnbs[j];
                         airbnbs[j] = airbnbs[j + 1];
@@ -216,8 +216,7 @@
         #region [ Create Sort ]
 
         public static void CreateSort(Airbnb[] airbnbs) {
-
-
+           // TODO: Criar algoritmo personalizado de ordenação
         }
 
         #endregion
