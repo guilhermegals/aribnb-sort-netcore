@@ -42,9 +42,9 @@ namespace GA.AED.Sort {
 
                 #region [ BubbleSort ]
 
-                //Bubble(airbnbsRandom, RANDOM, quantity);
-                //Bubble(airbnbsDesc, DESC, quantity);
-                //Bubble(airbnbsAsc, ASC, quantity);
+                Bubble(airbnbsRandom, RANDOM, quantity);
+                Bubble(airbnbsDesc, DESC, quantity);
+                Bubble(airbnbsAsc, ASC, quantity);
 
                 #endregion
 
@@ -58,9 +58,9 @@ namespace GA.AED.Sort {
 
                 #region [ InsertSort ]
 
-                //Insert(airbnbsRandom, RANDOM, quantity);
-                //Insert(airbnbsDesc, DESC, quantity);
-                //Insert(airbnbsAsc, ASC, quantity);
+                Insert(airbnbsRandom, RANDOM, quantity);
+                Insert(airbnbsDesc, DESC, quantity);
+                Insert(airbnbsAsc, ASC, quantity);
 
                 #endregion
 
@@ -74,9 +74,9 @@ namespace GA.AED.Sort {
 
                 #region [ QuickSort ]
 
-                //Quick(airbnbsRandom, RANDOM, quantity);
-                //Quick(airbnbsDesc, DESC, quantity);
-                //Quick(airbnbsAsc, ASC, quantity);
+                Quick(airbnbsRandom, RANDOM, quantity);
+                Quick(airbnbsDesc, DESC, quantity);
+                Quick(airbnbsAsc, ASC, quantity);
 
                 #endregion
 
