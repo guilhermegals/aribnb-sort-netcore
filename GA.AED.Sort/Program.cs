@@ -7,11 +7,11 @@ namespace GA.AED.Sort {
 
         #region [ Consts ]
 
-        private const string FILE_READ_PATH_RANDOM = @"Files/dados_airbnb_random.csv";
-        private const string FILE_READ_PATH_DESC = @"Files/dados_airbnb_desc.csv";
-        private const string FILE_READ_PATH_ASC = @"Files/dados_airbnb_asc.csv";
-        private const string FILE_LOG_WRITE_PATH = @"Files/Logs/Log {0}.csv";
-        private const string FILE_CONSOLE_LOG_WRITE_PATH = @"Files/Logs/ConsoleLog {0}.txt";
+        private const string FILE_READ_PATH_RANDOM = @"Files\dados_airbnb_random.csv";
+        private const string FILE_READ_PATH_DESC = @"Files\dados_airbnb_desc.csv";
+        private const string FILE_READ_PATH_ASC = @"Files\dados_airbnb_asc.csv";
+        private const string FILE_LOG_WRITE_PATH = @"Files\Logs\Log {0}.csv";
+        private const string FILE_CONSOLE_LOG_WRITE_PATH = @"Files\Logs\ConsoleLog {0}.txt";
 
         private const string BUBBLE_SORT = "BubbleSort";
         private const string SELECT_SORT = "SelectSort";
