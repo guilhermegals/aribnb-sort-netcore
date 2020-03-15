@@ -203,10 +203,34 @@ namespace GA.AED.Sort
         Airbnb.MergeSort(airbnbsMergeSort, 0, airbnbsMergeSort.Length - 1);
 
 
+        private static void Merge(Airbnb[] airbnbs, string type, int quantity) {
+            
+      DateTime mergeSortStart = DateTime.Now;
+      double[] mergeSortTimes = new double[REPETITIONS_TIME];
+            
+      for (int repetition = 0; repetition < REPETITIONS_TIME; repetition++) {
+        Airbnb[] airbnbsMergeSort = Airbnb.GetCopy(airbnbs, quantity);
+
+        Stopwatch watch = Stopwatch.StartNew();
+        Airbnb.MergeSort(airbnbsMergeSort, 0, airbnbsMergeSort.Length - 1);
         watch.Stop();
 
         mergeSortTimes[repetition] = watch.ElapsedMilliseconds / 1000.0;
       }
+
+      double mergeAverageTime = AverageTime(mergeSortTimes);
+      DateTime mergeSortEnd = DateTime.Now;
+      string consoleLog = $"{quantity,-10} {type,-15} {MERGE_SORT,-15} ({mergeSortStart} - {mergeSortEnd})";
+
+      Log(MERGE_SORT,
+          type,
+          quantity,
+          mergeAverageTime,
+          Process.GetCurrentProcess().PeakWorkingSet64 / (1024 * 1024));
+
+      ConsoleLog(consoleLog);
+      Console.WriteLine(consoleLog);
+    }
 
       double mergeAverageTime = AverageTime(mergeSortTimes);
       DateTime mergeSortEnd = DateTime.Now;

@@ -156,6 +156,24 @@
       }
     }
 
+        public static void MergeSort(Airbnb[] airbnbs, int low, int high) {
+            
+        if (low < high) {            
+        int middle = low + (high - low) / 2;
+
+        MergeSort(airbnbs, low, middle);
+        MergeSort(airbnbs, middle + 1, high);
+
+        MergeSplit(airbnbs, low, middle, high);
+      }
+    }
+
+    public static void MergeSplit(Airbnb[] airbnbs, int low, int middle, int high) {
+        
+      Airbnb[] aux = new Airbnb[airbnbs.Length];
+      for (int y = low; y <= high; y++) {
+          aux[y] = airbnbs[y];
+
     public static void MergeSplit(Airbnb[] airbnbs, int low, int middle, int high)
     {
       Airbnb[] aux = new Airbnb[airbnbs.Length];
@@ -167,6 +185,20 @@
       int i = low;
       int j = middle + 1;
       int k = low;
+
+      while (i <= middle && j <= high) {          
+        if (aux[i].RoomId <= aux[j].RoomId) {
+          airbnbs[k] = aux[i];
+          i++;
+        }
+        else {
+          airbnbs[k] = aux[j];
+          j++;
+        }
+        k++;
+      }
+      while (i <= middle) {
+
       while (i <= middle && j <= high)
       {
         if (aux[i].RoomId <= aux[j].RoomId)
@@ -188,6 +220,7 @@
         i++;
       }
     }
+
     #endregion
 
     #region [ Quick Sort ]
