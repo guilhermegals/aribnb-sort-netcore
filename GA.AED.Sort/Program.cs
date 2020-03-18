@@ -293,10 +293,10 @@ namespace GA.AED.Sort {
 
             if (!File.Exists(path)) {
                 File.Create(path).Close();
-                linha += "Algoritmo; Tipo; Quantidade; Tempo; Memoria\n";
+                linha += "Algoritmo, Tipo, Quantidade, Tempo, Memoria\n";
             }
 
-            linha += $"{description}; {tipo}; {quantity}; {time}; {memory}\n";
+            linha += $"{description}, {tipo}, {quantity}, {time}, {memory}\n";
             File.AppendAllText(path, linha);
         }
 
