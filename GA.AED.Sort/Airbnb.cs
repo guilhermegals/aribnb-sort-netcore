@@ -216,7 +216,53 @@
         #region [ Create Sort ]
 
         public static void CreateSort(Airbnb[] airbnbs) {
-           // TODO: Criar algoritmo personalizado de ordenação
+            int length = airbnbs.Length - 1;
+            int end;
+            int start;
+            int middle = length / 2;
+
+            int minimo;
+            int maximo;
+
+            Airbnb valorMinimo;
+            Airbnb valorMaximo;
+
+            Airbnb aux;
+
+            for (int i = 0; i <= middle; i++) {
+                start = i;
+                end = length - i;
+
+                minimo = i;
+                maximo = end;
+
+                valorMinimo = airbnbs[minimo];
+                valorMaximo = airbnbs[maximo];
+
+                for (int j = i; j <= end; j++) {
+                    if (airbnbs[j].RoomId < airbnbs[minimo].RoomId) {
+                        minimo = j;
+                        valorMinimo = airbnbs[minimo];
+                    } else if (airbnbs[j].RoomId > airbnbs[maximo].RoomId) {
+                        maximo = j;
+                        valorMaximo = airbnbs[maximo];
+                    }
+                }
+
+                if (start != minimo) {
+                    aux = valorMinimo;
+                    if (airbnbs[start].RoomId == valorMaximo.RoomId)
+                        maximo = minimo;
+                    airbnbs[minimo] = airbnbs[start];
+                    airbnbs[start] = aux;
+                }
+
+                if (end != maximo) {
+                    aux = valorMaximo;
+                    airbnbs[maximo] = airbnbs[end];
+                    airbnbs[end] = aux;
+                }
+            }
         }
 
         #endregion
